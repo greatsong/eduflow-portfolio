@@ -83,6 +83,18 @@
 
     async function fetchProjects() {
       try {
+        // 1. 정적 프로젝트 데이터 먼저 로드 (에듀플로에서 생성한 프로젝트)
+        let staticProjects = [];
+        try {
+          const staticRes = await fetch('./projects.json');
+          if (staticRes.ok) {
+            staticProjects = await staticRes.json();
+          }
+        } catch (e) {
+          console.log('정적 데이터 로드 실패, GitHub API만 사용');
+        }
+
+        // 2. GitHub API에서 has_pages인 레포 가져오기
         const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`);
         const repos = await response.json();
 
@@ -90,40 +102,53 @@
         const pagesRepos = [];
         for (const repo of repos) {
           if (repo.has_pages) {
-            // Pages URL 확인
-            try {
-              const pagesRes = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${repo.name}/pages`);
-              if (pagesRes.ok) {
-                const pagesData = await pagesRes.json();
-                pagesRepos.push({
-                  name: repo.name,
-                  description: repo.description || '',
-                  url: pagesData.html_url,
-                  repoUrl: repo.html_url,
-                  createdAt: repo.created_at,
-                  updatedAt: repo.updated_at,
-                  isEduflow: EDUFLOW_PREFIXES.some(p => repo.name.toLowerCase().includes(p))
-                });
-              }
-            } catch (e) {
-              // Pages API 호출 실패 시 기본 URL 사용
-              pagesRepos.push({
-                name: repo.name,
-                description: repo.description || '',
-                url: `https://${GITHUB_USER}.github.io/${repo.name}/`,
-                repoUrl: repo.html_url,
-                createdAt: repo.created_at,
-                updatedAt: repo.updated_at,
-                isEduflow: EDUFLOW_PREFIXES.some(p => repo.name.toLowerCase().includes(p))
-              });
-            }
+            pagesRepos.push({
+              name: repo.name,
+              description: repo.description || '',
+              url: `https://${GITHUB_USER}.github.io/${repo.name}/`,
+              repoUrl: repo.html_url,
+              createdAt: repo.created_at,
+              updatedAt: repo.updated_at,
+              isEduflow: EDUFLOW_PREFIXES.some(p => repo.name.toLowerCase().includes(p))
+            });
           }
         }
 
-        allProjects = pagesRepos.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+        // 3. 정적 데이터와 API 결과 병합 (정적 데이터가 우선, 더 상세한 정보)
+        const mergedMap = new Map();
+
+        // API 결과 먼저 추가
+        pagesRepos.forEach(p => mergedMap.set(p.name, p));
+
+        // 정적 데이터로 덮어쓰기/추가 (더 상세한 title/description 포함)
+        staticProjects.forEach(p => {
+          const existing = mergedMap.get(p.name);
+          if (existing) {
+            // 병합: 정적 데이터의 title/description 사용, API의 updatedAt 사용
+            mergedMap.set(p.name, { ...existing, ...p, updatedAt: existing.updatedAt });
+          } else {
+            // API에서 못 가져온 경우 정적 데이터 그대로 추가
+            mergedMap.set(p.name, { ...p, updatedAt: p.createdAt });
+          }
+        });
+
+        allProjects = Array.from(mergedMap.values())
+          .sort((a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt));
+
         updateStats();
         renderProjects();
       } catch (error) {
+        // API 실패 시에도 정적 데이터는 보여주기
+        try {
+          const staticRes = await fetch('./projects.json');
+          if (staticRes.ok) {
+            allProjects = await staticRes.json();
+            updateStats();
+            renderProjects();
+            return;
+          }
+        } catch (e) {}
+
         document.getElementById('projects').innerHTML = `
           <div class="col-span-full text-center py-12 text-red-400">
             데이터를 불러오는데 실패했습니다. 잠시 후 다시 시도해주세요.
@@ -183,7 +208,7 @@
       document.getElementById('projects').innerHTML = filtered.map(project => `
         <div class="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
           <div class="flex items-start justify-between mb-2">
-            <h3 class="font-bold text-gray-900 line-clamp-1">${project.name}</h3>
+            <h3 class="font-bold text-gray-900 line-clamp-1">${project.title || project.name}</h3>
             ${project.isEduflow ? '<span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full">에듀플로</span>' : ''}
           </div>
           ${project.description ? `<p class="text-sm text-gray-500 mb-3 line-clamp-2">${project.description}</p>` : '<p class="text-sm text-gray-400 mb-3 italic">설명 없음</p>'}

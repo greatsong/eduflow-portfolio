@@ -1,0 +1,56 @@
+[
+  {
+    "name": "pico-for-high-school-6w",
+    "title": "피코 기초반",
+    "description": "라즈베리 파이 피코 기초 교육과정",
+    "url": "https://greatsong.github.io/pico-for-high-school-6w/",
+    "repoUrl": "https://github.com/greatsong/pico-for-high-school-6w",
+    "createdAt": "2026-02-04T15:26:36",
+    "isEduflow": true
+  },
+  {
+    "name": "living-lab-001",
+    "title": "피코 체인지메이커 리빙랩 프로젝트!",
+    "description": "체인지메이커 리빙랩 프로젝트 기반 교육",
+    "url": "https://greatsong.github.io/living-lab-001/",
+    "repoUrl": "https://github.com/greatsong/living-lab-001",
+    "createdAt": "2026-02-04T08:21:57",
+    "isEduflow": true
+  },
+  {
+    "name": "260203-ml-book-test",
+    "title": "머신러닝 기초",
+    "description": "3차시 기초 자료",
+    "url": "https://greatsong.github.io/260203-ml-book-test/",
+    "repoUrl": "https://github.com/greatsong/260203-ml-book-test",
+    "createdAt": "2026-02-03T21:43:38",
+    "isEduflow": true
+  },
+  {
+    "name": "2022-informatics-50",
+    "title": "2022개정교육과정의 새로운 패러다임을 제시하는 수업",
+    "description": "정보과 교육과정 수업 자료",
+    "url": "https://greatsong.github.io/2022-informatics-50/",
+    "repoUrl": "https://github.com/greatsong/2022-informatics-50",
+    "createdAt": "2026-02-05T14:47:56",
+    "isEduflow": true
+  },
+  {
+    "name": "pico-basic-15H",
+    "title": "피코 15시간",
+    "description": "15차시 피코 기초 교육과정",
+    "url": "https://greatsong.github.io/pico-basic-15H/",
+    "repoUrl": "https://github.com/greatsong/pico-basic-15H",
+    "createdAt": "2026-02-04T22:48:45",
+    "isEduflow": true
+  },
+  {
+    "name": "pico-hw-beginner",
+    "title": "피코 하드웨어를 어려워하는 학생들을 위한 특별 교재",
+    "description": "하드웨어 입문자를 위한 피코 교육",
+    "url": "https://greatsong.github.io/pico-hw-beginner/",
+    "repoUrl": "https://github.com/greatsong/pico-hw-beginner",
+    "createdAt": "2026-02-05T11:25:30",
+    "isEduflow": true
+  }
+]
