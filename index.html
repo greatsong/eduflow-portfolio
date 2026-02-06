@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>에듀플로 포트폴리오 - 석리송</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <!-- 헤더 -->
+    <header class="text-center mb-12">
+      <div class="inline-block mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="80" height="80">
+          <circle cx="32" cy="32" r="30" fill="#4F46E5"/>
+          <path d="M12 44 L32 38 L52 44 L52 24 L32 18 L12 24 Z" fill="white"/>
+          <path d="M32 18 L32 38" stroke="#4F46E5" stroke-width="1.5"/>
+          <path d="M20 16 L28 32" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="19" cy="14" r="2" fill="#8B5CF6"/>
+          <path d="M44 16 L36 32" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="45" cy="14" r="2" fill="#F59E0B"/>
+          <circle cx="32" cy="26" r="2.5" fill="#10B981"/>
+        </svg>
+      </div>
+      <h1 class="text-4xl font-bold gradient-text mb-2">에듀플로 포트폴리오</h1>
+      <p class="text-gray-600">AI와 함께 만든 교육 콘텐츠 모음</p>
+      <p class="text-sm text-gray-400 mt-1">by 석리송</p>
+    </header>
+
+    <!-- 통계 -->
+    <div id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+        <p id="stat-total" class="text-2xl font-bold text-indigo-600">-</p>
+        <p class="text-xs text-gray-500">총 프로젝트</p>
+      </div>
+      <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+        <p id="stat-eduflow" class="text-2xl font-bold text-purple-600">-</p>
+        <p class="text-xs text-gray-500">에듀플로 제작</p>
+      </div>
+      <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+        <p id="stat-recent" class="text-2xl font-bold text-green-600">-</p>
+        <p class="text-xs text-gray-500">최근 7일</p>
+      </div>
+      <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+        <p id="stat-updated" class="text-xs font-medium text-gray-400">-</p>
+        <p class="text-xs text-gray-500">마지막 업데이트</p>
+      </div>
+    </div>
+
+    <!-- 필터 -->
+    <div class="flex gap-2 mb-6">
+      <button onclick="filterProjects('all')" class="filter-btn active px-4 py-2 rounded-lg text-sm font-medium bg-indigo-600 text-white">전체</button>
+      <button onclick="filterProjects('eduflow')" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300">에듀플로</button>
+      <button onclick="filterProjects('recent')" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300">최근 7일</button>
+    </div>
+
+    <!-- 프로젝트 그리드 -->
+    <div id="projects" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="col-span-full text-center py-12 text-gray-400">
+        로딩 중...
+      </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer class="mt-12 text-center text-sm text-gray-400">
+      <p>Made with <a href="https://github.com/greatsong/eduflow" class="text-indigo-500 hover:underline">에듀플로</a></p>
+    </footer>
+  </div>
+
+  <script>
+    const GITHUB_USER = 'greatsong';
+    const EDUFLOW_PREFIXES = ['pico-', 'living-lab', 'ml-book', 'informatics', 'neo-'];
+
+    let allProjects = [];
+    let currentFilter = 'all';
+
+    async function fetchProjects() {
+      try {
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`);
+        const repos = await response.json();
+
+        // GitHub Pages가 활성화된 레포만 필터링
+        const pagesRepos = [];
+        for (const repo of repos) {
+          if (repo.has_pages) {
+            // Pages URL 확인
+            try {
+              const pagesRes = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${repo.name}/pages`);
+              if (pagesRes.ok) {
+                const pagesData = await pagesRes.json();
+                pagesRepos.push({
+                  name: repo.name,
+                  description: repo.description || '',
+                  url: pagesData.html_url,
+                  repoUrl: repo.html_url,
+                  createdAt: repo.created_at,
+                  updatedAt: repo.updated_at,
+                  isEduflow: EDUFLOW_PREFIXES.some(p => repo.name.toLowerCase().includes(p))
+                });
+              }
+            } catch (e) {
+              // Pages API 호출 실패 시 기본 URL 사용
+              pagesRepos.push({
+                name: repo.name,
+                description: repo.description || '',
+                url: `https://${GITHUB_USER}.github.io/${repo.name}/`,
+                repoUrl: repo.html_url,
+                createdAt: repo.created_at,
+                updatedAt: repo.updated_at,
+                isEduflow: EDUFLOW_PREFIXES.some(p => repo.name.toLowerCase().includes(p))
+              });
+            }
+          }
+        }
+
+        allProjects = pagesRepos.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+        updateStats();
+        renderProjects();
+      } catch (error) {
+        document.getElementById('projects').innerHTML = `
+          <div class="col-span-full text-center py-12 text-red-400">
+            데이터를 불러오는데 실패했습니다. 잠시 후 다시 시도해주세요.
+          </div>
+        `;
+      }
+    }
+
+    function updateStats() {
+      const now = new Date();
+      const weekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000);
+
+      const total = allProjects.length;
+      const eduflow = allProjects.filter(p => p.isEduflow).length;
+      const recent = allProjects.filter(p => new Date(p.createdAt) > weekAgo).length;
+
+      document.getElementById('stat-total').textContent = total + '개';
+      document.getElementById('stat-eduflow').textContent = eduflow + '개';
+      document.getElementById('stat-recent').textContent = recent + '개';
+      document.getElementById('stat-updated').textContent = new Date().toLocaleDateString('ko-KR');
+    }
+
+    function filterProjects(filter) {
+      currentFilter = filter;
+
+      // 버튼 스타일 업데이트
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white', 'active');
+        btn.classList.add('bg-gray-200', 'text-gray-700');
+      });
+      event.target.classList.remove('bg-gray-200', 'text-gray-700');
+      event.target.classList.add('bg-indigo-600', 'text-white', 'active');
+
+      renderProjects();
+    }
+
+    function renderProjects() {
+      const now = new Date();
+      const weekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000);
+
+      let filtered = allProjects;
+      if (currentFilter === 'eduflow') {
+        filtered = allProjects.filter(p => p.isEduflow);
+      } else if (currentFilter === 'recent') {
+        filtered = allProjects.filter(p => new Date(p.createdAt) > weekAgo);
+      }
+
+      if (filtered.length === 0) {
+        document.getElementById('projects').innerHTML = `
+          <div class="col-span-full text-center py-12 text-gray-400">
+            프로젝트가 없습니다.
+          </div>
+        `;
+        return;
+      }
+
+      document.getElementById('projects').innerHTML = filtered.map(project => `
+        <div class="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+          <div class="flex items-start justify-between mb-2">
+            <h3 class="font-bold text-gray-900 line-clamp-1">${project.name}</h3>
+            ${project.isEduflow ? '<span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full">에듀플로</span>' : ''}
+          </div>
+          ${project.description ? `<p class="text-sm text-gray-500 mb-3 line-clamp-2">${project.description}</p>` : '<p class="text-sm text-gray-400 mb-3 italic">설명 없음</p>'}
+          <p class="text-xs text-gray-400 mb-3">
+            생성: ${new Date(project.createdAt).toLocaleDateString('ko-KR')}
+          </p>
+          <div class="flex gap-2">
+            <a href="${project.url}" target="_blank" class="flex-1 text-center text-xs py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+              🌐 사이트 열기
+            </a>
+            <a href="${project.repoUrl}" target="_blank" class="text-xs py-2 px-3 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
+              📦
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 초기화
+    fetchProjects();
+  </script>
+</body>
+</html>
