@@ -12,6 +12,9 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    .collab-gradient {
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #f0f9ff 100%);
+    }
   </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -51,6 +54,71 @@
       </div>
     </div>
 
+    <!-- 오픈소스 협업 안내 -->
+    <div class="collab-gradient rounded-2xl p-6 mb-8 border border-green-200">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-3xl">🤝</span>
+        <div>
+          <h2 class="text-xl font-bold text-gray-900">함께 만들어가는 교재</h2>
+          <p class="text-sm text-gray-500">선생님들의 참여로 더 좋은 교육 콘텐츠를 만듭니다</p>
+        </div>
+      </div>
+
+      <p class="text-sm text-gray-700 mb-4 leading-relaxed">
+        아래 교재들은 모두 <strong>오픈소스</strong>로 공개되어 있습니다.
+        현직 선생님이라면 누구나 교재 내용을 개선하거나, 오류를 수정하거나,
+        새로운 아이디어를 제안할 수 있습니다.
+        함께 교재를 발전시켜 나가요!
+      </p>
+
+      <!-- 참여 방법 3단계 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+        <div class="bg-white/70 rounded-xl p-4 border border-green-100">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="bg-green-100 text-green-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">1</span>
+            <h3 class="font-semibold text-gray-800 text-sm">아이디어 제안</h3>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">
+            교재의 <strong>Issues</strong> 탭에서 개선 아이디어나 오류를 제보해주세요.
+            템플릿이 준비되어 있어 쉽게 작성할 수 있습니다.
+          </p>
+        </div>
+        <div class="bg-white/70 rounded-xl p-4 border border-green-100">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="bg-green-100 text-green-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">2</span>
+            <h3 class="font-semibold text-gray-800 text-sm">토론 참여</h3>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">
+            교재의 <strong>Discussions</strong> 탭에서 수업 활용 사례를 공유하거나,
+            교재 방향에 대해 자유롭게 토론할 수 있습니다.
+          </p>
+        </div>
+        <div class="bg-white/70 rounded-xl p-4 border border-green-100">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="bg-green-100 text-green-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">3</span>
+            <h3 class="font-semibold text-gray-800 text-sm">직접 수정</h3>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">
+            GitHub에서 <strong>Fork → 수정 → Pull Request</strong>로 교재 내용을 직접 개선할 수 있습니다.
+            각 저장소의 CONTRIBUTING.md에 상세한 안내가 있습니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- 라이선스 및 추가 안내 -->
+      <div class="flex flex-wrap items-center gap-4 text-xs text-gray-500">
+        <span class="bg-white/80 px-3 py-1.5 rounded-full border border-gray-200">
+          📜 라이선스: <strong>CC BY-NC-SA 4.0</strong> (비상업적, 동일조건 변경허락)
+        </span>
+        <span class="bg-white/80 px-3 py-1.5 rounded-full border border-gray-200">
+          🛠️ 도구: <a href="https://github.com/greatsong/eduflow-js" class="text-indigo-600 hover:underline font-medium">에듀플로</a>로 제작
+        </span>
+        <span class="bg-white/80 px-3 py-1.5 rounded-full border border-gray-200">
+          👩‍🏫 대상: 현직 교사 (초대 기반)
+        </span>
+      </div>
+    </div>
+
     <!-- 필터 -->
     <div class="flex gap-2 mb-6">
       <button onclick="filterProjects('all')" class="filter-btn active px-4 py-2 rounded-lg text-sm font-medium bg-indigo-600 text-white">전체</button>
@@ -66,7 +134,7 @@
 
     <!-- 푸터 -->
     <footer class="mt-12 text-center text-sm text-gray-400">
-      <p>Made with <a href="https://github.com/greatsong/eduflow" class="text-indigo-500 hover:underline">에듀플로</a></p>
+      <p>Made with <a href="https://github.com/greatsong/eduflow-js" class="text-indigo-500 hover:underline">에듀플로</a></p>
     </footer>
   </div>
 
@@ -78,11 +146,9 @@
 
     async function fetchProjects() {
       try {
-        // 에듀플로로 만든 프로젝트만 표시 (정적 데이터)
         const staticRes = await fetch('./projects.json');
         if (staticRes.ok) {
           allProjects = await staticRes.json();
-          // 모든 프로젝트를 에듀플로로 표시
           allProjects = allProjects.map(p => ({ ...p, isEduflow: true }));
           allProjects.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         }
@@ -113,7 +179,6 @@
     function filterProjects(filter) {
       currentFilter = filter;
 
-      // 버튼 스타일 업데이트
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.remove('bg-indigo-600', 'text-white', 'active');
         btn.classList.add('bg-gray-200', 'text-gray-700');
@@ -146,25 +211,35 @@
         <div class="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
           <div class="flex items-start justify-between mb-2">
             <h3 class="font-bold text-gray-900 line-clamp-1">${project.title || project.name}</h3>
-            ${project.isEduflow ? '<span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full">에듀플로</span>' : ''}
+            <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full whitespace-nowrap ml-1">에듀플로</span>
           </div>
           ${project.description ? `<p class="text-sm text-gray-500 mb-3 line-clamp-2">${project.description}</p>` : '<p class="text-sm text-gray-400 mb-3 italic">설명 없음</p>'}
           <p class="text-xs text-gray-400 mb-3">
             생성: ${new Date(project.createdAt).toLocaleDateString('ko-KR')}
           </p>
-          <div class="flex gap-2">
+          <div class="flex gap-2 mb-2">
             <a href="${project.url}" target="_blank" class="flex-1 text-center text-xs py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
               🌐 사이트 열기
             </a>
-            <a href="${project.repoUrl}" target="_blank" class="text-xs py-2 px-3 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors">
+            <a href="${project.repoUrl}" target="_blank" class="text-xs py-2 px-3 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors" title="GitHub 저장소">
               📦
+            </a>
+          </div>
+          <div class="flex gap-1.5">
+            <a href="${project.repoUrl}/issues" target="_blank" class="flex-1 text-center text-xs py-1.5 bg-amber-50 text-amber-700 rounded-lg hover:bg-amber-100 transition-colors border border-amber-200" title="개선 제안 / 오류 제보">
+              💡 제안하기
+            </a>
+            <a href="${project.repoUrl}/discussions" target="_blank" class="flex-1 text-center text-xs py-1.5 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors border border-green-200" title="토론 참여">
+              💬 토론
+            </a>
+            <a href="${project.repoUrl}#contributing" target="_blank" class="flex-1 text-center text-xs py-1.5 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors border border-blue-200" title="기여 방법 안내">
+              🤝 참여 안내
             </a>
           </div>
         </div>
       `).join('');
     }
 
-    // 초기화
     fetchProjects();
   </script>
 </body>
