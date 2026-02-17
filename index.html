@@ -227,9 +227,11 @@
             <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full whitespace-nowrap ml-1">에듀플로</span>
           </div>
           ${project.description ? `<p class="text-sm text-gray-500 mb-3 line-clamp-2">${project.description}</p>` : '<p class="text-sm text-gray-400 mb-3 italic">설명 없음</p>'}
-          <p class="text-xs text-gray-400 mb-3">
-            생성: ${new Date(project.createdAt).toLocaleDateString('ko-KR')}
-          </p>
+          <div class="flex flex-wrap gap-2 text-xs text-gray-400 mb-3">
+            <span>📅 ${new Date(project.createdAt).toLocaleDateString('ko-KR')}</span>
+            ${project.chapters ? `<span>📖 ${project.chapters}차시</span>` : ''}
+            ${project.pages ? `<span>📄 ~${project.pages}페이지</span>` : ''}
+          </div>
           <div class="flex gap-2 mb-2">
             <a href="${project.url}" target="_blank" class="flex-1 text-center text-xs py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
               🌐 사이트 열기
