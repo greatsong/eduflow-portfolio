@@ -1,5 +1,25 @@
 [
   {
+    "name": "ps-basic-260207",
+    "title": "문제해결능력 키우기 기초반",
+    "description": "바이브 코딩 하기 전, 문제발견 및 문제능력 향상을 위한 기초 수업.",
+    "url": "https://greatsong.github.io/ps-basic-260207/",
+    "repoUrl": "https://github.com/greatsong/ps-basic-260207",
+    "createdAt": "2026-02-07T12:23:04.809Z",
+    "updatedAt": "2026-02-17T00:00:00.000Z",
+    "isEduflow": true
+  },
+  {
+    "name": "neo-informatics-with-pico",
+    "title": "2022개정교육과정의 새로운 패러다임을 제시하는 수업",
+    "description": "정보과 교육과정 수업 자료",
+    "url": "https://greatsong.github.io/neo-informatics-with-pico/",
+    "repoUrl": "https://github.com/greatsong/neo-informatics-with-pico",
+    "createdAt": "2026-02-05T14:47:56",
+    "updatedAt": "2026-02-17T00:00:00.000Z",
+    "isEduflow": true
+  },
+  {
     "name": "pico-for-high-school-6w",
     "title": "피코 기초반",
     "description": "라즈베리 파이 피코 기초 교육과정",
@@ -10,7 +30,7 @@
   },
   {
     "name": "living-lab-001",
-    "title": "피코 체인지메이커 리빙랩 프로젝트!",
+    "title": "피코 체인지메이커 리빙랩 프로젝트\!",
     "description": "체인지메이커 리빙랩 프로젝트 기반 교육",
     "url": "https://greatsong.github.io/living-lab-001/",
     "repoUrl": "https://github.com/greatsong/living-lab-001",
