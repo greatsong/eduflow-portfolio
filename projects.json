@@ -7,7 +7,10 @@
     "repoUrl": "https://github.com/greatsong/ps-basic-260207",
     "createdAt": "2026-02-07T12:23:04.809Z",
     "updatedAt": "2026-02-17T00:00:00.000Z",
-    "isEduflow": true
+    "isEduflow": true,
+    "chapters": 33,
+    "totalChapters": 38,
+    "pages": 187
   },
   {
     "name": "neo-informatics-with-pico",
@@ -17,7 +20,10 @@
     "repoUrl": "https://github.com/greatsong/neo-informatics-with-pico",
     "createdAt": "2026-02-05T14:47:56",
     "updatedAt": "2026-02-17T00:00:00.000Z",
-    "isEduflow": true
+    "isEduflow": true,
+    "chapters": 45,
+    "totalChapters": 45,
+    "pages": 234
   },
   {
     "name": "pico-for-high-school-6w",
@@ -26,7 +32,10 @@
     "url": "https://greatsong.github.io/pico-for-high-school-6w/",
     "repoUrl": "https://github.com/greatsong/pico-for-high-school-6w",
     "createdAt": "2026-02-04T15:26:36",
-    "isEduflow": true
+    "isEduflow": true,
+    "chapters": 18,
+    "totalChapters": 18,
+    "pages": 121
   },
   {
     "name": "living-lab-001",
@@ -35,7 +44,10 @@
     "url": "https://greatsong.github.io/living-lab-001/",
     "repoUrl": "https://github.com/greatsong/living-lab-001",
     "createdAt": "2026-02-04T08:21:57",
-    "isEduflow": true
+    "isEduflow": true,
+    "chapters": 14,
+    "totalChapters": 14,
+    "pages": 100
   },
   {
     "name": "260203-ml-book-test",
@@ -44,7 +56,10 @@
     "url": "https://greatsong.github.io/260203-ml-book-test/",
     "repoUrl": "https://github.com/greatsong/260203-ml-book-test",
     "createdAt": "2026-02-03T21:43:38",
-    "isEduflow": true
+    "isEduflow": true,
+    "chapters": 15,
+    "totalChapters": 15,
+    "pages": 98
   },
   {
     "name": "2022-informatics-50",
@@ -53,7 +68,10 @@
     "url": "https://greatsong.github.io/2022-informatics-50/",
     "repoUrl": "https://github.com/greatsong/2022-informatics-50",
     "createdAt": "2026-02-05T14:47:56",
-    "isEduflow": true
+    "isEduflow": true,
+    "chapters": 45,
+    "totalChapters": 45,
+    "pages": 234
   },
   {
     "name": "pico-basic-15H",
@@ -62,7 +80,10 @@
     "url": "https://greatsong.github.io/pico-basic-15H/",
     "repoUrl": "https://github.com/greatsong/pico-basic-15H",
     "createdAt": "2026-02-04T22:48:45",
-    "isEduflow": true
+    "isEduflow": true,
+    "chapters": 15,
+    "totalChapters": 15,
+    "pages": 182
   },
   {
     "name": "pico-hw-beginner",
@@ -71,6 +92,9 @@
     "url": "https://greatsong.github.io/pico-hw-beginner/",
     "repoUrl": "https://github.com/greatsong/pico-hw-beginner",
     "createdAt": "2026-02-05T11:25:30",
-    "isEduflow": true
+    "isEduflow": true,
+    "chapters": 14,
+    "totalChapters": 14,
+    "pages": 21
   }
 ]
