@@ -2,14 +2,14 @@
   {
     "name": "vpython-thinking-30h",
     "title": "VPython으로 키우는 사고력 — 파이썬 기초 30시간",
-    "description": "컴퓨팅 사고력을 키우는 것이 목표입니다. VPython 3D 시각화를 도구로 삼아, 생각을 코드로, 코드를 3차원으로 구현합니다.",
+    "description": "VPython 3D 시각화를 활용하여 공간적 사고력과 논리적 사고력을 키우는 파이썬 기초 프로그래밍 교재. 30시간(15챕터 × 2시간) 구성.",
     "url": "https://greatsong.github.io/vpython-thinking-30h/",
     "repoUrl": "https://github.com/greatsong/vpython-thinking-30h",
     "createdAt": "2026-02-17T09:00:00.000Z",
-    "updatedAt": "2026-02-17T14:23:00.000Z",
+    "updatedAt": "2026-02-18T00:26:10.378Z",
     "isEduflow": true,
-    "chapters": 15,
-    "pages": 283
+    "chapters": 18,
+    "pages": 147
   },
   {
     "name": "ps-basic-260207",
