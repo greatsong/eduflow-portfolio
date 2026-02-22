@@ -1,5 +1,17 @@
 [
   {
+    "name": "ai-thinking-15h",
+    "title": "AI 시대의 구조적 사고 — 생각하는 힘 키우기",
+    "description": "고등학교 1~2학년을 위한 15시간(10회×90분) AI 시대 역량 교육 과정. 구조적 사고력 → AI 협업 설계력 → 분야 융합 적용력의 3계층 구조.",
+    "url": "https://greatsong.github.io/ai-thinking-15h/",
+    "repoUrl": "https://github.com/greatsong/ai-thinking-15h",
+    "createdAt": "2026-02-22T13:00:00.000Z",
+    "isEduflow": true,
+    "chapters": 10,
+    "totalChapters": 10,
+    "pages": 250
+  },
+  {
     "name": "data-analysis-agentic",
     "title": "데이터 분석 에이전틱 수업 — 교사용 지도서",
     "description": "AI를 도구로 활용하는 데이터 분석 4차시 수업. Plotly.js 인터랙티브 차트 15개, 4파트 10챕터.",
