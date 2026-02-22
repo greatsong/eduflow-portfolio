@@ -1,5 +1,17 @@
 [
   {
+    "name": "data-analysis-agentic",
+    "title": "데이터 분석 에이전틱 수업 — 교사용 지도서",
+    "description": "AI를 도구로 활용하는 데이터 분석 4차시 수업. Plotly.js 인터랙티브 차트 15개, 4파트 10챕터.",
+    "url": "https://greatsong.github.io/data-analysis-agentic/",
+    "repoUrl": "https://github.com/greatsong/data-analysis-agentic",
+    "createdAt": "2026-02-22T09:00:00.000Z",
+    "isEduflow": true,
+    "chapters": 10,
+    "totalChapters": 10,
+    "pages": 40
+  },
+  {
     "name": "vpython-thinking-30h",
     "title": "VPython으로 키우는 사고력 — 파이썬 기초 30시간",
     "description": "VPython 3D 시각화를 활용하여 공간적 사고력과 논리적 사고력을 키우는 파이썬 기초 프로그래밍 교재. 30시간(15챕터 × 2시간) 구성.",
