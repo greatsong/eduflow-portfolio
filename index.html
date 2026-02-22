@@ -119,10 +119,17 @@
       </div>
     </div>
 
-    <!-- 필터 -->
-    <div class="flex gap-2 mb-6">
-      <button onclick="filterProjects('all')" class="filter-btn active px-4 py-2 rounded-lg text-sm font-medium bg-indigo-600 text-white">전체</button>
-      <button onclick="filterProjects('recent')" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300">최근 7일</button>
+    <!-- 필터 & 정렬 -->
+    <div class="flex items-center gap-3 mb-6 flex-wrap">
+      <div class="flex gap-2">
+        <button onclick="filterProjects('all')" class="filter-btn active px-4 py-2 rounded-lg text-sm font-medium bg-indigo-600 text-white">전체</button>
+        <button onclick="filterProjects('recent')" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300">최근 7일</button>
+      </div>
+      <span class="text-gray-300">|</span>
+      <div class="flex gap-2">
+        <button onclick="sortProjects('newest', this)" class="sort-btn active px-4 py-2 rounded-lg text-sm font-medium bg-indigo-600 text-white">최신순</button>
+        <button onclick="sortProjects('stars', this)" class="sort-btn px-4 py-2 rounded-lg text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300">⭐ 스타순</button>
+      </div>
     </div>
 
     <!-- 프로젝트 그리드 -->
@@ -156,18 +163,20 @@
 
     let allProjects = [];
     let currentFilter = 'all';
+    let currentSort = 'newest';
 
     async function fetchProjects() {
       try {
         const staticRes = await fetch('./projects.json');
         if (staticRes.ok) {
           allProjects = await staticRes.json();
-          allProjects = allProjects.map(p => ({ ...p, isEduflow: true }));
+          allProjects = allProjects.map(p => ({ ...p, isEduflow: true, stars: null }));
           allProjects.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         }
 
         updateStats();
         renderProjects();
+        fetchAllStars();
       } catch (error) {
         document.getElementById('projects').innerHTML = `
           <div class="col-span-full text-center py-12 text-red-400">
@@ -175,6 +184,28 @@
           </div>
         `;
       }
+    }
+
+    async function fetchAllStars() {
+      const repos = allProjects
+        .filter(p => p.repoUrl)
+        .map(p => p.repoUrl.replace('https://github.com/', ''));
+
+      const results = await Promise.allSettled(
+        repos.map(r => fetch(`https://api.github.com/repos/${r}`).then(res => res.json()))
+      );
+
+      results.forEach((result, i) => {
+        if (result.status === 'fulfilled' && result.value.stargazers_count !== undefined) {
+          const repoPath = repos[i];
+          const project = allProjects.find(p => p.repoUrl && p.repoUrl.endsWith(repoPath));
+          if (project) {
+            project.stars = result.value.stargazers_count;
+          }
+        }
+      });
+
+      renderProjects();
     }
 
     function updateStats() {
@@ -202,13 +233,33 @@
       renderProjects();
     }
 
+    function sortProjects(mode, btn) {
+      currentSort = mode;
+
+      document.querySelectorAll('.sort-btn').forEach(b => {
+        b.classList.remove('bg-indigo-600', 'text-white', 'active');
+        b.classList.add('bg-gray-200', 'text-gray-700');
+      });
+      btn.classList.remove('bg-gray-200', 'text-gray-700');
+      btn.classList.add('bg-indigo-600', 'text-white', 'active');
+
+      renderProjects();
+    }
+
     function renderProjects() {
       const now = new Date();
       const weekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000);
 
-      let filtered = allProjects;
+      let filtered = [...allProjects];
       if (currentFilter === 'recent') {
-        filtered = allProjects.filter(p => new Date(p.createdAt) > weekAgo);
+        filtered = filtered.filter(p => new Date(p.createdAt) > weekAgo);
+      }
+
+      // 정렬
+      if (currentSort === 'stars') {
+        filtered.sort((a, b) => (b.stars ?? -1) - (a.stars ?? -1));
+      } else {
+        filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       }
 
       if (filtered.length === 0) {
@@ -220,11 +271,19 @@
         return;
       }
 
-      document.getElementById('projects').innerHTML = filtered.map(project => `
+      document.getElementById('projects').innerHTML = filtered.map(project => {
+        const starBadge = project.stars !== null
+          ? `<span class="inline-flex items-center gap-1 bg-yellow-50 text-yellow-700 text-xs px-2 py-0.5 rounded-full border border-yellow-200 whitespace-nowrap ml-1">⭐ ${project.stars}</span>`
+          : '';
+
+        return `
         <div class="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
           <div class="flex items-start justify-between mb-2">
             <h3 class="font-bold text-gray-900 line-clamp-1">${project.title || project.name}</h3>
-            <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full whitespace-nowrap ml-1">에듀플로</span>
+            <div class="flex items-center gap-1 shrink-0">
+              ${starBadge}
+              <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full whitespace-nowrap">에듀플로</span>
+            </div>
           </div>
           ${project.description ? `<p class="text-sm text-gray-500 mb-3 line-clamp-2">${project.description}</p>` : '<p class="text-sm text-gray-400 mb-3 italic">설명 없음</p>'}
           <div class="flex flex-wrap gap-2 text-xs text-gray-400 mb-3">
@@ -252,7 +311,7 @@
             </a>
           </div>
         </div>
-      `).join('');
+      `}).join('');
     }
 
     // 기여자 목록 (모든 저장소에서 수집, 중복 제거)
