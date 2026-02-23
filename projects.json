@@ -1,5 +1,17 @@
 [
   {
+    "name": "ai-rule-designer-30h",
+    "title": "AI 시대의 규칙 설계자 — 30시간 교육과정",
+    "description": "고등학교 1학년 대상 30시간 정보 교과 교육과정. 학생이 AI에게 다양한 일을 시키고, AI가 실수할 때마다 규칙을 한 줄씩 추가하여 '나만의 AI 규칙 파일'을 완성한다.",
+    "url": "https://greatsong.github.io/ai-rule-designer-30h/",
+    "repoUrl": "https://github.com/greatsong/ai-rule-designer-30h",
+    "createdAt": "2026-02-23T09:58:00.000000",
+    "updatedAt": "2026-02-23T01:38:12.949Z",
+    "isEduflow": true,
+    "chapters": 6,
+    "pages": 92
+  },
+  {
     "name": "ai-thinking-15h",
     "title": "AI 시대의 구조적 사고 — 생각하는 힘 키우기",
     "description": "고등학교 1~2학년을 위한 15시간(10회×90분) AI 시대 역량 교육 과정. 구조적 사고력 → AI 협업 설계력 → 분야 융합 적용력의 3계층 구조.",
