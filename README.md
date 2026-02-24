@@ -36,7 +36,24 @@ AI와 함께 만든 교육 콘텐츠 모음
 }
 ```
 
-3. 커밋 & 푸시하면 자동 반영
+3. 커밋 시 **pre-commit hook**이 자동으로 README 검사를 실행합니다
+4. README에 개요/기여 방법이 없으면 자동 생성됩니다
+5. 푸시하면 자동 반영
+
+### README 검사 스크립트
+
+각 프로젝트의 README에 **개요**와 **기여 방법** 섹션이 반드시 포함되어야 합니다.
+
+```bash
+# 전체 프로젝트 검사
+./check-readme.sh
+
+# 누락된 README 자동 생성/수정
+./check-readme.sh --fix
+
+# 특정 저장소만 검사
+./check-readme.sh --check-only 레포지토리-이름
+```
 
 ## 기술 스택
 
