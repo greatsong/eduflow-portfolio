@@ -164,6 +164,10 @@
     const CONTRIB_CACHE_KEY = 'eduflow_contrib_cache';
     const CACHE_TTL = 30 * 60 * 1000; // 30분
 
+    // API 실패 시 사용할 정적 기본값
+    const STATIC_STARS = {'greatsong/ai-rule-designer-30h':1,'greatsong/ai-thinking-15h':1,'greatsong/data-analysis-agentic':1,'greatsong/vpython-thinking-30h':3,'greatsong/ps-basic-260207':2,'greatsong/neo-informatics-with-pico':0,'greatsong/pico-for-high-school-6w':1,'greatsong/living-lab-001':1,'greatsong/260203-ml-book-test':0,'greatsong/2022-informatics-50':0,'greatsong/pico-basic-15H':0,'greatsong/pico-hw-beginner':1};
+    const STATIC_CONTRIBUTORS = [{login:'greatsong',avatar:'https://avatars.githubusercontent.com/u/6792460?v=4',url:'https://github.com/greatsong',contributions:100,reposList:['ai-rule-designer-30h','ai-thinking-15h','data-analysis-agentic','vpython-thinking-30h','ps-basic-260207','neo-informatics-with-pico','pico-for-high-school-6w','living-lab-001','260203-ml-book-test','2022-informatics-50','pico-basic-15H','pico-hw-beginner']}];
+
     let allProjects = [];
     let currentFilter = 'all';
     let currentSort = 'newest';
@@ -193,23 +197,21 @@
           allProjects.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         }
 
-        // 캐시된 스타 즉시 적용
+        // 즉시 적용: 캐시 → 없으면 정적 기본값
         const starCache = getCache(STARS_CACHE_KEY);
-        if (starCache) {
-          Object.entries(starCache.data).forEach(([repo, count]) => {
-            const project = allProjects.find(p => p.repoUrl && p.repoUrl.endsWith(repo));
-            if (project) project.stars = count;
-          });
-        }
+        const starData = starCache ? starCache.data : STATIC_STARS;
+        Object.entries(starData).forEach(([repo, count]) => {
+          const project = allProjects.find(p => p.repoUrl && p.repoUrl.endsWith(repo));
+          if (project) project.stars = count;
+        });
 
         updateStats();
         renderProjects();
 
-        // 캐시된 기여자 즉시 표시
+        // 즉시 표시: 캐시 → 없으면 정적 기본값
         const contribCache = getCache(CONTRIB_CACHE_KEY);
-        if (contribCache) {
-          renderContributors(contribCache.data.map(c => ({ ...c, repos: new Set(c.reposList) })));
-        }
+        const contribData = contribCache ? contribCache.data : STATIC_CONTRIBUTORS;
+        renderContributors(contribData.map(c => ({ ...c, repos: new Set(c.reposList) })));
 
         // 백그라운드에서 API 갱신
         fetchAllStars(starCache);
