@@ -160,10 +160,29 @@
 
   <script>
     const GITHUB_USER = 'greatsong';
+    const STARS_CACHE_KEY = 'eduflow_stars_cache';
+    const CONTRIB_CACHE_KEY = 'eduflow_contrib_cache';
+    const CACHE_TTL = 30 * 60 * 1000; // 30분
 
     let allProjects = [];
     let currentFilter = 'all';
     let currentSort = 'newest';
+
+    function getCache(key) {
+      try {
+        const cached = JSON.parse(localStorage.getItem(key));
+        if (cached && cached.data) return cached;
+      } catch(e) {}
+      return null;
+    }
+
+    function setCache(key, data) {
+      try { localStorage.setItem(key, JSON.stringify({ ts: Date.now(), data })); } catch(e) {}
+    }
+
+    function isCacheFresh(cached) {
+      return cached && Date.now() - cached.ts < CACHE_TTL;
+    }
 
     async function fetchProjects() {
       try {
@@ -174,9 +193,27 @@
           allProjects.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         }
 
+        // 캐시된 스타 즉시 적용
+        const starCache = getCache(STARS_CACHE_KEY);
+        if (starCache) {
+          Object.entries(starCache.data).forEach(([repo, count]) => {
+            const project = allProjects.find(p => p.repoUrl && p.repoUrl.endsWith(repo));
+            if (project) project.stars = count;
+          });
+        }
+
         updateStats();
         renderProjects();
-        fetchAllStars();
+
+        // 캐시된 기여자 즉시 표시
+        const contribCache = getCache(CONTRIB_CACHE_KEY);
+        if (contribCache) {
+          renderContributors(contribCache.data.map(c => ({ ...c, repos: new Set(c.reposList) })));
+        }
+
+        // 백그라운드에서 API 갱신
+        fetchAllStars(starCache);
+        fetchContributors(contribCache);
       } catch (error) {
         document.getElementById('projects').innerHTML = `
           <div class="col-span-full text-center py-12 text-red-400">
@@ -186,7 +223,9 @@
       }
     }
 
-    async function fetchAllStars() {
+    async function fetchAllStars(existingCache) {
+      if (isCacheFresh(existingCache)) return;
+
       const repos = allProjects
         .filter(p => p.repoUrl)
         .map(p => p.repoUrl.replace('https://github.com/', ''));
@@ -195,17 +234,24 @@
         repos.map(r => fetch(`https://api.github.com/repos/${r}`).then(res => res.json()))
       );
 
+      const cacheData = {};
+      let updated = false;
       results.forEach((result, i) => {
         if (result.status === 'fulfilled' && result.value.stargazers_count !== undefined) {
           const repoPath = repos[i];
+          cacheData[repoPath] = result.value.stargazers_count;
           const project = allProjects.find(p => p.repoUrl && p.repoUrl.endsWith(repoPath));
           if (project) {
             project.stars = result.value.stargazers_count;
+            updated = true;
           }
         }
       });
 
-      renderProjects();
+      if (updated) {
+        setCache(STARS_CACHE_KEY, cacheData);
+        renderProjects();
+      }
     }
 
     function updateStats() {
@@ -314,38 +360,50 @@
       `}).join('');
     }
 
-    // 기여자 목록 (모든 저장소에서 수집, 중복 제거)
-    async function fetchContributors() {
-      const contributorMap = new Map();
+    // 기여자 목록 (모든 저장소에서 병렬 수집, 중복 제거, 캐시)
+    async function fetchContributors(existingCache) {
+      if (isCacheFresh(existingCache)) return;
 
-      for (const project of allProjects) {
-        if (!project.repoUrl) continue;
-        const repoPath = project.repoUrl.replace('https://github.com/', '');
-        try {
-          const res = await fetch(`https://api.github.com/repos/${repoPath}/contributors?per_page=50`);
-          if (!res.ok) continue;
-          const contributors = await res.json();
-          for (const c of contributors) {
-            if (c.type !== 'User') continue;
-            if (contributorMap.has(c.login)) {
-              const existing = contributorMap.get(c.login);
-              existing.contributions += c.contributions;
-              existing.repos.add(project.name);
-            } else {
-              contributorMap.set(c.login, {
-                login: c.login,
-                avatar: c.avatar_url,
-                url: c.html_url,
-                contributions: c.contributions,
-                repos: new Set([project.name]),
-              });
-            }
+      const contributorMap = new Map();
+      const repos = allProjects.filter(p => p.repoUrl).map(p => ({
+        name: p.name,
+        path: p.repoUrl.replace('https://github.com/', '')
+      }));
+
+      const results = await Promise.allSettled(
+        repos.map(r => fetch(`https://api.github.com/repos/${r.path}/contributors?per_page=50`).then(res => res.ok ? res.json() : []))
+      );
+
+      results.forEach((result, i) => {
+        if (result.status !== 'fulfilled' || !Array.isArray(result.value)) return;
+        for (const c of result.value) {
+          if (c.type !== 'User') continue;
+          if (contributorMap.has(c.login)) {
+            const existing = contributorMap.get(c.login);
+            existing.contributions += c.contributions;
+            existing.repos.add(repos[i].name);
+          } else {
+            contributorMap.set(c.login, {
+              login: c.login,
+              avatar: c.avatar_url,
+              url: c.html_url,
+              contributions: c.contributions,
+              repos: new Set([repos[i].name]),
+            });
           }
-        } catch { /* skip */ }
-      }
+        }
+      });
 
       const sorted = [...contributorMap.values()].sort((a, b) => b.contributions - a.contributions);
-      renderContributors(sorted);
+
+      if (sorted.length > 0) {
+        // Set은 JSON 직렬화 불가 → 배열로 변환하여 캐시
+        setCache(CONTRIB_CACHE_KEY, sorted.map(c => ({
+          login: c.login, avatar: c.avatar, url: c.url,
+          contributions: c.contributions, reposList: [...c.repos]
+        })));
+        renderContributors(sorted);
+      }
     }
 
     function renderContributors(contributors) {
@@ -359,18 +417,20 @@
 
       countEl.textContent = contributors.length + '명';
 
-      el.innerHTML = contributors.map(c => `
+      el.innerHTML = contributors.map(c => {
+        const repoCount = c.repos instanceof Set ? c.repos.size : (c.reposList ? c.reposList.length : 0);
+        return `
         <a href="${c.url}" target="_blank"
            class="flex flex-col items-center gap-1.5 p-3 bg-white rounded-xl border border-gray-100 hover:shadow-md transition-shadow w-24"
-           title="${c.login} — ${c.repos.size}개 교재에 ${c.contributions}회 기여">
-          <img src="${c.avatar}&s=64" alt="${c.login}" class="w-12 h-12 rounded-full border-2 border-purple-100" />
+           title="${c.login} — ${repoCount}개 교재에 ${c.contributions}회 기여">
+          <img src="${c.avatar}&s=64" alt="${c.login}" class="w-12 h-12 rounded-full border-2 border-purple-100" loading="lazy" />
           <span class="text-xs font-medium text-gray-700 truncate w-full text-center">${c.login}</span>
-          <span class="text-[10px] text-gray-400">${c.repos.size}개 교재</span>
+          <span class="text-[10px] text-gray-400">${repoCount}개 교재</span>
         </a>
-      `).join('');
+      `}).join('');
     }
 
-    fetchProjects().then(() => fetchContributors()).catch(() => {});
+    fetchProjects();
   </script>
 </body>
 </html>
