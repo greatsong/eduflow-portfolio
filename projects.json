@@ -1,5 +1,17 @@
 [
   {
+    "name": "info-data-literacy-test",
+    "title": "정보와 디지털 문해력(연습)",
+    "description": "",
+    "url": "https://greatsong.github.io/info-data-literacy-test/",
+    "repoUrl": "https://github.com/greatsong/info-data-literacy-test",
+    "createdAt": "2026-02-26T04:25:53.543Z",
+    "updatedAt": "2026-02-26T04:43:39.839Z",
+    "isEduflow": true,
+    "chapters": 12,
+    "pages": 118
+  },
+  {
     "name": "ai-rule-designer-30h",
     "title": "AI 시대의 규칙 설계자 — 30시간 교육과정",
     "description": "고등학교 1학년 대상 30시간 정보 교과 교육과정. 학생이 AI에게 다양한 일을 시키고, AI가 실수할 때마다 규칙을 한 줄씩 추가하여 '나만의 AI 규칙 파일'을 완성한다. GlowScript VPython 인터랙티브 3D 데모 7개 포함.",
