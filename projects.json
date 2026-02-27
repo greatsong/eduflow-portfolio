@@ -1,5 +1,17 @@
 [
   {
+    "name": "260227-my-first-eduflow",
+    "title": "데이터 압축 재미있게 배우기 특강",
+    "description": "2022 개정 교육과정에서 쉽고 재밌게 배우기!",
+    "url": "https://greatsong.github.io/260227-my-first-eduflow/",
+    "repoUrl": "https://github.com/greatsong/260227-my-first-eduflow",
+    "createdAt": "2026-02-27T07:17:23.560Z",
+    "updatedAt": "2026-02-27T07:33:10.587Z",
+    "isEduflow": true,
+    "chapters": 20,
+    "pages": 85
+  },
+  {
     "name": "info-data-literacy-test",
     "title": "정보와 디지털 문해력(연습)",
     "description": "",
