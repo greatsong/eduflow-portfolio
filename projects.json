@@ -6,10 +6,10 @@
     "url": "https://greatsong.github.io/pythink2-theory/",
     "repoUrl": "https://github.com/greatsong/pythink2-theory",
     "createdAt": "2026-03-05T09:00:00.000Z",
-    "isEduflow": true,
     "chapters": 8,
     "totalChapters": 8,
-    "pages": 120
+    "pages": 120,
+    "isEduflow": true
   },
   {
     "name": "pythink2-solutions",
@@ -18,46 +18,10 @@
     "url": "https://greatsong.github.io/pythink2-solutions/",
     "repoUrl": "https://github.com/greatsong/pythink2-solutions",
     "createdAt": "2026-03-05T09:00:00.000Z",
-    "isEduflow": true,
     "chapters": 8,
     "totalChapters": 8,
-    "pages": 150
-  },
-  {
-    "name": "pythink2-slides",
-    "title": "생각하는 힘을 키우는 파이썬 기초 (강의안)",
-    "description": "reveal.js 기반 8월드 강의 슬라이드. 6테마 선택기(Notion/Aurora/Ghibli/Pastel/Retro/Ocean). 교사 노트 + fragment 단계적 공개.",
-    "url": "https://greatsong.github.io/pythink2-slides/",
-    "repoUrl": "https://github.com/greatsong/pythink2-slides",
-    "createdAt": "2026-03-05T09:00:00.000Z",
-    "isEduflow": true,
-    "chapters": 8,
-    "totalChapters": 8,
-    "pages": 160
-  },
-  {
-    "name": "260227-my-first-eduflow",
-    "title": "데이터 압축 재미있게 배우기 특강",
-    "description": "2022 개정 교육과정에서 쉽고 재밌게 배우기!",
-    "url": "https://greatsong.github.io/260227-my-first-eduflow/",
-    "repoUrl": "https://github.com/greatsong/260227-my-first-eduflow",
-    "createdAt": "2026-02-27T07:17:23.560Z",
-    "updatedAt": "2026-02-27T07:33:10.587Z",
-    "isEduflow": true,
-    "chapters": 20,
-    "pages": 85
-  },
-  {
-    "name": "info-data-literacy-test",
-    "title": "정보와 디지털 문해력(연습)",
-    "description": "",
-    "url": "https://greatsong.github.io/info-data-literacy-test/",
-    "repoUrl": "https://github.com/greatsong/info-data-literacy-test",
-    "createdAt": "2026-02-26T04:25:53.543Z",
-    "updatedAt": "2026-02-26T06:58:14.139Z",
-    "isEduflow": true,
-    "chapters": 12,
-    "pages": 118
+    "pages": 150,
+    "isEduflow": true
   },
   {
     "name": "ai-rule-designer-30h",
@@ -67,10 +31,10 @@
     "repoUrl": "https://github.com/greatsong/ai-rule-designer-30h",
     "createdAt": "2026-02-23T09:58:00.000Z",
     "updatedAt": "2026-02-23T02:21:58.349Z",
-    "isEduflow": true,
     "chapters": 7,
     "totalChapters": 7,
-    "pages": 97
+    "pages": 97,
+    "isEduflow": true
   },
   {
     "name": "ai-thinking-15h",
@@ -79,10 +43,10 @@
     "url": "https://greatsong.github.io/ai-thinking-15h/",
     "repoUrl": "https://github.com/greatsong/ai-thinking-15h",
     "createdAt": "2026-02-22T13:00:00.000Z",
-    "isEduflow": true,
     "chapters": 10,
     "totalChapters": 10,
-    "pages": 250
+    "pages": 250,
+    "isEduflow": true
   },
   {
     "name": "data-analysis-agentic",
@@ -91,10 +55,10 @@
     "url": "https://greatsong.github.io/data-analysis-agentic/",
     "repoUrl": "https://github.com/greatsong/data-analysis-agentic",
     "createdAt": "2026-02-22T09:00:00.000Z",
-    "isEduflow": true,
     "chapters": 10,
     "totalChapters": 10,
-    "pages": 40
+    "pages": 40,
+    "isEduflow": true
   },
   {
     "name": "vpython-thinking-30h",
@@ -104,9 +68,9 @@
     "repoUrl": "https://github.com/greatsong/vpython-thinking-30h",
     "createdAt": "2026-02-17T09:00:00.000Z",
     "updatedAt": "2026-02-18T00:26:10.378Z",
-    "isEduflow": true,
     "chapters": 18,
-    "pages": 147
+    "pages": 147,
+    "isEduflow": true
   },
   {
     "name": "ps-basic-260207",
@@ -116,10 +80,10 @@
     "repoUrl": "https://github.com/greatsong/ps-basic-260207",
     "createdAt": "2026-02-07T12:23:04.809Z",
     "updatedAt": "2026-02-17T00:00:00.000Z",
-    "isEduflow": true,
     "chapters": 33,
     "totalChapters": 38,
-    "pages": 187
+    "pages": 187,
+    "isEduflow": true
   },
   {
     "name": "neo-informatics-with-pico",
@@ -129,46 +93,10 @@
     "repoUrl": "https://github.com/greatsong/neo-informatics-with-pico",
     "createdAt": "2026-02-05T14:47:56",
     "updatedAt": "2026-02-17T00:00:00.000Z",
-    "isEduflow": true,
     "chapters": 45,
     "totalChapters": 45,
-    "pages": 234
-  },
-  {
-    "name": "pico-for-high-school-6w",
-    "title": "피코 기초반",
-    "description": "라즈베리 파이 피코 기초 교육과정",
-    "url": "https://greatsong.github.io/pico-for-high-school-6w/",
-    "repoUrl": "https://github.com/greatsong/pico-for-high-school-6w",
-    "createdAt": "2026-02-04T15:26:36",
-    "isEduflow": true,
-    "chapters": 18,
-    "totalChapters": 18,
-    "pages": 121
-  },
-  {
-    "name": "living-lab-001",
-    "title": "피코 체인지메이커 리빙랩 프로젝트!",
-    "description": "체인지메이커 리빙랩 프로젝트 기반 교육",
-    "url": "https://greatsong.github.io/living-lab-001/",
-    "repoUrl": "https://github.com/greatsong/living-lab-001",
-    "createdAt": "2026-02-04T08:21:57",
-    "isEduflow": true,
-    "chapters": 14,
-    "totalChapters": 14,
-    "pages": 100
-  },
-  {
-    "name": "260203-ml-book-test",
-    "title": "머신러닝 기초",
-    "description": "3차시 기초 자료",
-    "url": "https://greatsong.github.io/260203-ml-book-test/",
-    "repoUrl": "https://github.com/greatsong/260203-ml-book-test",
-    "createdAt": "2026-02-03T21:43:38",
-    "isEduflow": true,
-    "chapters": 15,
-    "totalChapters": 15,
-    "pages": 98
+    "pages": 234,
+    "isEduflow": true
   },
   {
     "name": "2022-informatics-50",
@@ -177,22 +105,10 @@
     "url": "https://greatsong.github.io/2022-informatics-50/",
     "repoUrl": "https://github.com/greatsong/2022-informatics-50",
     "createdAt": "2026-02-05T14:47:56",
-    "isEduflow": true,
     "chapters": 45,
     "totalChapters": 45,
-    "pages": 234
-  },
-  {
-    "name": "pico-basic-15H",
-    "title": "피코 15시간",
-    "description": "15차시 피코 기초 교육과정",
-    "url": "https://greatsong.github.io/pico-basic-15H/",
-    "repoUrl": "https://github.com/greatsong/pico-basic-15H",
-    "createdAt": "2026-02-04T22:48:45",
-    "isEduflow": true,
-    "chapters": 15,
-    "totalChapters": 15,
-    "pages": 182
+    "pages": 234,
+    "isEduflow": true
   },
   {
     "name": "pico-hw-beginner",
@@ -201,9 +117,57 @@
     "url": "https://greatsong.github.io/pico-hw-beginner/",
     "repoUrl": "https://github.com/greatsong/pico-hw-beginner",
     "createdAt": "2026-02-05T11:25:30",
-    "isEduflow": true,
     "chapters": 14,
     "totalChapters": 14,
-    "pages": 21
+    "pages": 21,
+    "isEduflow": true
+  },
+  {
+    "name": "pico-basic-15H",
+    "title": "피코 15시간",
+    "description": "15차시 피코 기초 교육과정",
+    "url": "https://greatsong.github.io/pico-basic-15H/",
+    "repoUrl": "https://github.com/greatsong/pico-basic-15H",
+    "createdAt": "2026-02-04T22:48:45",
+    "chapters": 15,
+    "totalChapters": 15,
+    "pages": 182,
+    "isEduflow": true
+  },
+  {
+    "name": "pico-for-high-school-6w",
+    "title": "피코 기초반",
+    "description": "라즈베리 파이 피코 기초 교육과정",
+    "url": "https://greatsong.github.io/pico-for-high-school-6w/",
+    "repoUrl": "https://github.com/greatsong/pico-for-high-school-6w",
+    "createdAt": "2026-02-04T15:26:36",
+    "chapters": 18,
+    "totalChapters": 18,
+    "pages": 121,
+    "isEduflow": true
+  },
+  {
+    "name": "living-lab-001",
+    "title": "피코 체인지메이커 리빙랩 프로젝트!",
+    "description": "체인지메이커 리빙랩 프로젝트 기반 교육",
+    "url": "https://greatsong.github.io/living-lab-001/",
+    "repoUrl": "https://github.com/greatsong/living-lab-001",
+    "createdAt": "2026-02-04T08:21:57",
+    "chapters": 14,
+    "totalChapters": 14,
+    "pages": 100,
+    "isEduflow": true
+  },
+  {
+    "name": "260203-ml-book-test",
+    "title": "머신러닝 기초",
+    "description": "3차시 기초 자료",
+    "url": "https://greatsong.github.io/260203-ml-book-test/",
+    "repoUrl": "https://github.com/greatsong/260203-ml-book-test",
+    "createdAt": "2026-02-03T21:43:38",
+    "chapters": 15,
+    "totalChapters": 15,
+    "pages": 98,
+    "isEduflow": true
   }
 ]
