@@ -32,8 +32,11 @@
 </head>
 <body class="bg-gray-50 min-h-screen">
   <div id="admin-bar" class="admin-bar" style="display:none;">
-    관리자 모드 | <button onclick="exportProjects()" class="bg-white text-red-700 px-3 py-1 rounded text-xs font-bold ml-2">변경사항 다운로드 (JSON)</button>
-    <button onclick="toggleAdmin()" class="bg-white/20 text-white px-3 py-1 rounded text-xs ml-2 border border-white/40">관리자 모드 종료</button>
+    <span id="admin-user"></span> 관리자 모드 |
+    <span id="admin-pending" class="bg-white/20 px-2 py-0.5 rounded text-xs ml-1" style="display:none;">삭제 대기: <strong id="admin-pending-count">0</strong>건</span>
+    <button onclick="commitChanges()" id="btn-commit" class="bg-white text-red-700 px-3 py-1 rounded text-xs font-bold ml-2" style="display:none;">GitHub에 반영하기</button>
+    <button onclick="exportProjects()" class="bg-white/80 text-red-700 px-3 py-1 rounded text-xs ml-1">JSON 다운로드</button>
+    <button onclick="toggleAdmin()" class="bg-white/20 text-white px-3 py-1 rounded text-xs ml-2 border border-white/40">로그아웃</button>
   </div>
   <div class="max-w-5xl mx-auto px-4 py-12">
     <!-- 헤더 -->
@@ -451,34 +454,58 @@
       `}).join('');
     }
 
-    // 관리자 모드
-    const ADMIN_HASH = '7fc476d0c6aa180bdd00fefc90a9b8696115abe5c4874748283acc5df2bf95a3';
+    // 관리자 모드 (GitHub PAT 인증)
+    const REPO_OWNER = 'greatsong';
+    const REPO_NAME = 'eduflow-portfolio';
+    const ALLOWED_USERS = ['greatsong'];
     let isAdminMode = false;
+    let githubToken = null;
+    let githubUsername = null;
     let deletedProjects = [];
-
-    async function sha256(text) {
-      const data = new TextEncoder().encode(text);
-      const hash = await crypto.subtle.digest('SHA-256', data);
-      return [...new Uint8Array(hash)].map(b => b.toString(16).padStart(2, '0')).join('');
-    }
 
     async function toggleAdmin() {
       if (isAdminMode) {
         isAdminMode = false;
+        githubToken = null;
+        githubUsername = null;
+        sessionStorage.removeItem('gh_token');
         document.body.classList.remove('admin-mode');
         document.getElementById('admin-bar').style.display = 'none';
         deletedProjects = [];
-        renderProjects();
+        fetchProjects();
         return;
       }
-      const pw = prompt('관리자 비밀번호를 입력하세요:');
-      if (pw === null) return;
-      if (await sha256(pw) === ADMIN_HASH) {
+
+      const saved = sessionStorage.getItem('gh_token');
+      const token = saved || prompt(
+        'GitHub Personal Access Token을 입력하세요.\n\n' +
+        '토큰 발급: GitHub > Settings > Developer settings > Fine-grained tokens\n' +
+        '필요 권한: eduflow-portfolio 저장소의 Contents (Read and write)'
+      );
+      if (!token) return;
+
+      try {
+        const res = await fetch('https://api.github.com/user', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error('인증 실패');
+        const user = await res.json();
+
+        if (!ALLOWED_USERS.includes(user.login)) {
+          alert(`${user.login} 계정은 관리자 권한이 없습니다.`);
+          return;
+        }
+
+        githubToken = token;
+        githubUsername = user.login;
+        sessionStorage.setItem('gh_token', token);
         isAdminMode = true;
         document.body.classList.add('admin-mode');
         document.getElementById('admin-bar').style.display = 'block';
-      } else {
-        alert('비밀번호가 틀렸습니다.');
+        document.getElementById('admin-user').textContent = `@${user.login}`;
+      } catch (e) {
+        sessionStorage.removeItem('gh_token');
+        alert('GitHub 인증 실패: ' + e.message);
       }
     }
 
@@ -490,6 +517,65 @@
       allProjects = allProjects.filter(p => p.name !== name);
       updateStats();
       renderProjects();
+      updatePendingUI();
+    }
+
+    function updatePendingUI() {
+      const count = deletedProjects.length;
+      document.getElementById('admin-pending').style.display = count > 0 ? 'inline' : 'none';
+      document.getElementById('admin-pending-count').textContent = count;
+      document.getElementById('btn-commit').style.display = count > 0 ? 'inline' : 'none';
+    }
+
+    async function commitChanges() {
+      if (!githubToken || deletedProjects.length === 0) return;
+
+      const names = deletedProjects.map(p => p.title || p.name).join(', ');
+      if (!confirm(`다음 프로젝트를 삭제하고 GitHub에 커밋합니다:\n\n${names}\n\n진행하시겠습니까?`)) return;
+
+      const btn = document.getElementById('btn-commit');
+      btn.textContent = '커밋 중...';
+      btn.disabled = true;
+
+      try {
+        const fileRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/projects.json`, {
+          headers: { Authorization: `Bearer ${githubToken}` }
+        });
+        if (!fileRes.ok) throw new Error('파일 정보 조회 실패');
+        const fileData = await fileRes.json();
+
+        const newContent = JSON.stringify(allProjects.map(p => {
+          const { stars, isEduflow, ...rest } = p;
+          return { ...rest, isEduflow: true };
+        }), null, 2);
+
+        const commitRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/projects.json`, {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${githubToken}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: `Remove projects: ${deletedProjects.map(p => p.name).join(', ')}`,
+            content: btoa(unescape(encodeURIComponent(newContent))),
+            sha: fileData.sha
+          })
+        });
+
+        if (!commitRes.ok) {
+          const err = await commitRes.json();
+          throw new Error(err.message || '커밋 실패');
+        }
+
+        deletedProjects = [];
+        updatePendingUI();
+        alert('GitHub에 반영되었습니다! 1~2분 후 사이트에 적용됩니다.');
+      } catch (e) {
+        alert('커밋 실패: ' + e.message);
+      } finally {
+        btn.textContent = 'GitHub에 반영하기';
+        btn.disabled = false;
+      }
     }
 
     function exportProjects() {
