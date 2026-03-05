@@ -468,7 +468,7 @@
         isAdminMode = false;
         githubToken = null;
         githubUsername = null;
-        sessionStorage.removeItem('gh_token');
+        localStorage.removeItem('gh_token');
         document.body.classList.remove('admin-mode');
         document.getElementById('admin-bar').style.display = 'none';
         deletedProjects = [];
@@ -476,7 +476,7 @@
         return;
       }
 
-      const saved = sessionStorage.getItem('gh_token');
+      const saved = localStorage.getItem('gh_token');
       const token = saved || prompt(
         'GitHub Personal Access Token을 입력하세요.\n\n' +
         '토큰 발급: GitHub > Settings > Developer settings > Fine-grained tokens\n' +
@@ -498,13 +498,13 @@
 
         githubToken = token;
         githubUsername = user.login;
-        sessionStorage.setItem('gh_token', token);
+        localStorage.setItem('gh_token', token);
         isAdminMode = true;
         document.body.classList.add('admin-mode');
         document.getElementById('admin-bar').style.display = 'block';
         document.getElementById('admin-user').textContent = `@${user.login}`;
       } catch (e) {
-        sessionStorage.removeItem('gh_token');
+        localStorage.removeItem('gh_token');
         alert('GitHub 인증 실패: ' + e.message);
       }
     }
