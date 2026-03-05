@@ -15,9 +15,26 @@
     .collab-gradient {
       background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #f0f9ff 100%);
     }
+    .admin-mode .delete-btn { display: inline-flex !important; }
+    .delete-btn { display: none !important; }
+    .admin-bar {
+      background: linear-gradient(135deg, #dc2626, #991b1b);
+      color: white;
+      text-align: center;
+      padding: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
   </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
+  <div id="admin-bar" class="admin-bar" style="display:none;">
+    관리자 모드 | <button onclick="exportProjects()" class="bg-white text-red-700 px-3 py-1 rounded text-xs font-bold ml-2">변경사항 다운로드 (JSON)</button>
+    <button onclick="toggleAdmin()" class="bg-white/20 text-white px-3 py-1 rounded text-xs ml-2 border border-white/40">관리자 모드 종료</button>
+  </div>
   <div class="max-w-5xl mx-auto px-4 py-12">
     <!-- 헤더 -->
     <header class="text-center mb-12">
@@ -155,6 +172,7 @@
     <!-- 푸터 -->
     <footer class="mt-12 text-center text-sm text-gray-400">
       <p>Made with <a href="https://github.com/greatsong/eduflow-js" class="text-indigo-500 hover:underline">에듀플로</a></p>
+      <button onclick="toggleAdmin()" class="mt-3 text-xs text-gray-300 hover:text-gray-500 transition-colors">관리자</button>
     </footer>
   </div>
 
@@ -325,10 +343,11 @@
           : '';
 
         return `
-        <div class="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+        <div class="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow border border-gray-100" data-project-name="${project.name}">
           <div class="flex items-start justify-between mb-2">
             <h3 class="font-bold text-gray-900 line-clamp-1">${project.title || project.name}</h3>
             <div class="flex items-center gap-1 shrink-0">
+              <button onclick="deleteProject('${project.name}')" class="delete-btn items-center gap-1 bg-red-100 text-red-600 text-xs px-2 py-0.5 rounded-full hover:bg-red-200 transition-colors" title="이 프로젝트 삭제">삭제</button>
               ${starBadge}
               <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full whitespace-nowrap">에듀플로</span>
             </div>
@@ -430,6 +449,54 @@
           <span class="text-[10px] text-gray-400">${repoCount}개 교재</span>
         </a>
       `}).join('');
+    }
+
+    // 관리자 모드
+    const ADMIN_PASSWORD = 'eduflow2026';
+    let isAdminMode = false;
+    let deletedProjects = [];
+
+    function toggleAdmin() {
+      if (isAdminMode) {
+        isAdminMode = false;
+        document.body.classList.remove('admin-mode');
+        document.getElementById('admin-bar').style.display = 'none';
+        deletedProjects = [];
+        renderProjects();
+        return;
+      }
+      const pw = prompt('관리자 비밀번호를 입력하세요:');
+      if (pw === ADMIN_PASSWORD) {
+        isAdminMode = true;
+        document.body.classList.add('admin-mode');
+        document.getElementById('admin-bar').style.display = 'block';
+      } else if (pw !== null) {
+        alert('비밀번호가 틀렸습니다.');
+      }
+    }
+
+    function deleteProject(name) {
+      const project = allProjects.find(p => p.name === name);
+      if (!project) return;
+      if (!confirm(`"${project.title || project.name}" 프로젝트를 삭제하시겠습니까?`)) return;
+      deletedProjects.push(project);
+      allProjects = allProjects.filter(p => p.name !== name);
+      updateStats();
+      renderProjects();
+    }
+
+    function exportProjects() {
+      const json = JSON.stringify(allProjects.map(p => {
+        const { stars, isEduflow, ...rest } = p;
+        return { ...rest, isEduflow: true };
+      }), null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'projects.json';
+      a.click();
+      URL.revokeObjectURL(url);
     }
 
     fetchProjects();

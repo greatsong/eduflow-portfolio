@@ -1,5 +1,41 @@
 [
   {
+    "name": "pythink2-theory",
+    "title": "생각하는 힘을 키우는 파이썬 기초 (이론편)",
+    "description": "pythink2 로드맵 8월드 이론 교재. sim-student 오답 기반 '자주 하는 실수' + 월드별 '문제 풀기 전 꿀팁'. MkDocs Material 다크/라이트 토글.",
+    "url": "https://greatsong.github.io/pythink2-theory/",
+    "repoUrl": "https://github.com/greatsong/pythink2-theory",
+    "createdAt": "2026-03-05T09:00:00.000Z",
+    "isEduflow": true,
+    "chapters": 8,
+    "totalChapters": 8,
+    "pages": 120
+  },
+  {
+    "name": "pythink2-solutions",
+    "title": "생각하는 힘을 키우는 파이썬 기초 (문제해결편)",
+    "description": "pythink2 23문제 전체 해설. 다중 풀이 + 접근법 비교표 + 12 아키타입별 학생 실수 패턴 + 교사 코칭 포인트. 비밀번호 보호(교사 전용).",
+    "url": "https://greatsong.github.io/pythink2-solutions/",
+    "repoUrl": "https://github.com/greatsong/pythink2-solutions",
+    "createdAt": "2026-03-05T09:00:00.000Z",
+    "isEduflow": true,
+    "chapters": 8,
+    "totalChapters": 8,
+    "pages": 150
+  },
+  {
+    "name": "pythink2-slides",
+    "title": "생각하는 힘을 키우는 파이썬 기초 (강의안)",
+    "description": "reveal.js 기반 8월드 강의 슬라이드. 6테마 선택기(Notion/Aurora/Ghibli/Pastel/Retro/Ocean). 교사 노트 + fragment 단계적 공개.",
+    "url": "https://greatsong.github.io/pythink2-slides/",
+    "repoUrl": "https://github.com/greatsong/pythink2-slides",
+    "createdAt": "2026-03-05T09:00:00.000Z",
+    "isEduflow": true,
+    "chapters": 8,
+    "totalChapters": 8,
+    "pages": 160
+  },
+  {
     "name": "260227-my-first-eduflow",
     "title": "데이터 압축 재미있게 배우기 특강",
     "description": "2022 개정 교육과정에서 쉽고 재밌게 배우기!",
@@ -25,7 +61,7 @@
   },
   {
     "name": "ai-rule-designer-30h",
-    "title": "AI 시대의 규칙 설계자 — 30시간 교육과정",
+    "title": "AI 시대의 규칙 설계자 -- 30시간 교육과정",
     "description": "고등학교 1학년 대상 30시간 정보 교과 교육과정. 학생이 AI에게 다양한 일을 시키고, AI가 실수할 때마다 규칙을 한 줄씩 추가하여 '나만의 AI 규칙 파일'을 완성한다. GlowScript VPython 인터랙티브 3D 데모 7개 포함.",
     "url": "https://greatsong.github.io/ai-rule-designer-30h/",
     "repoUrl": "https://github.com/greatsong/ai-rule-designer-30h",
@@ -38,8 +74,8 @@
   },
   {
     "name": "ai-thinking-15h",
-    "title": "AI 시대의 구조적 사고 — 생각하는 힘 키우기",
-    "description": "고등학교 1~2학년을 위한 15시간(10회×90분) AI 시대 역량 교육 과정. 구조적 사고력 → AI 협업 설계력 → 분야 융합 적용력의 3계층 구조.",
+    "title": "AI 시대의 구조적 사고 -- 생각하는 힘 키우기",
+    "description": "고등학교 1~2학년을 위한 15시간(10회x90분) AI 시대 역량 교육 과정. 구조적 사고력 -> AI 협업 설계력 -> 분야 융합 적용력의 3계층 구조.",
     "url": "https://greatsong.github.io/ai-thinking-15h/",
     "repoUrl": "https://github.com/greatsong/ai-thinking-15h",
     "createdAt": "2026-02-22T13:00:00.000Z",
@@ -50,7 +86,7 @@
   },
   {
     "name": "data-analysis-agentic",
-    "title": "데이터 분석 에이전틱 수업 — 교사용 지도서",
+    "title": "데이터 분석 에이전틱 수업 -- 교사용 지도서",
     "description": "AI를 도구로 활용하는 데이터 분석 4차시 수업. Plotly.js 인터랙티브 차트 15개, 4파트 10챕터.",
     "url": "https://greatsong.github.io/data-analysis-agentic/",
     "repoUrl": "https://github.com/greatsong/data-analysis-agentic",
@@ -62,8 +98,8 @@
   },
   {
     "name": "vpython-thinking-30h",
-    "title": "VPython으로 키우는 사고력 — 파이썬 기초 30시간",
-    "description": "VPython 3D 시각화를 활용하여 공간적 사고력과 논리적 사고력을 키우는 파이썬 기초 프로그래밍 교재. 30시간(15챕터 × 2시간) 구성.",
+    "title": "VPython으로 키우는 사고력 -- 파이썬 기초 30시간",
+    "description": "VPython 3D 시각화를 활용하여 공간적 사고력과 논리적 사고력을 키우는 파이썬 기초 프로그래밍 교재. 30시간(15챕터 x 2시간) 구성.",
     "url": "https://greatsong.github.io/vpython-thinking-30h/",
     "repoUrl": "https://github.com/greatsong/vpython-thinking-30h",
     "createdAt": "2026-02-17T09:00:00.000Z",
