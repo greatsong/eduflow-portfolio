@@ -452,11 +452,17 @@
     }
 
     // 관리자 모드
-    const ADMIN_PASSWORD = 'eduflow2026';
+    const ADMIN_HASH = '7fc476d0c6aa180bdd00fefc90a9b8696115abe5c4874748283acc5df2bf95a3';
     let isAdminMode = false;
     let deletedProjects = [];
 
-    function toggleAdmin() {
+    async function sha256(text) {
+      const data = new TextEncoder().encode(text);
+      const hash = await crypto.subtle.digest('SHA-256', data);
+      return [...new Uint8Array(hash)].map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function toggleAdmin() {
       if (isAdminMode) {
         isAdminMode = false;
         document.body.classList.remove('admin-mode');
@@ -466,11 +472,12 @@
         return;
       }
       const pw = prompt('관리자 비밀번호를 입력하세요:');
-      if (pw === ADMIN_PASSWORD) {
+      if (pw === null) return;
+      if (await sha256(pw) === ADMIN_HASH) {
         isAdminMode = true;
         document.body.classList.add('admin-mode');
         document.getElementById('admin-bar').style.display = 'block';
-      } else if (pw !== null) {
+      } else {
         alert('비밀번호가 틀렸습니다.');
       }
     }
