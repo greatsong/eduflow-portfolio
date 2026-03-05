@@ -1,5 +1,17 @@
 [
   {
+    "name": "deep-learning-course",
+    "title": "딥러닝 여행: AI는 어떻게 생각할까?",
+    "description": "고등학교 2학년 대상 10차시(50분x10) 딥러닝 기초 교재. 토큰화, 임베딩, 퍼셉트론, 손실함수, 경사하강법, Attention, Transformer까지. 학생용 교재 + 교사용 지도서 + AI 역사 슬라이드. MkDocs Material 기반.",
+    "url": "https://greatsong.github.io/deep-learning-course/",
+    "repoUrl": "https://github.com/greatsong/deep-learning-course",
+    "createdAt": "2026-03-05T18:00:00.000Z",
+    "chapters": 10,
+    "totalChapters": 10,
+    "pages": 200,
+    "isEduflow": true
+  },
+  {
     "name": "pythink2-theory",
     "title": "생각하는 힘을 키우는 파이썬 기초 (이론편)",
     "description": "pythink2 로드맵 8월드 이론 교재. sim-student 오답 기반 '자주 하는 실수' + 월드별 '문제 풀기 전 꿀팁'. MkDocs Material 다크/라이트 토글.",
