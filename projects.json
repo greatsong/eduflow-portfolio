@@ -1,5 +1,19 @@
 [
   {
+    "name": "ai-history-0",
+    "title": "인공지능의 역사 이야기",
+    "description": "인공지능의 역사를 인물과 사건 중심으로 스토리텔링을 통해 이해하는 교양 입문서적 느낌의 웹 북.",
+    "url": "https://greatsong.github.io/ai-history-0/",
+    "repoUrl": "https://github.com/greatsong/ai-history-0",
+    "createdAt": "2026-03-12T04:03:06.159Z",
+    "updatedAt": "2026-03-27T12:17:15.583Z",
+    "isEduflow": true,
+    "chapters": 18,
+    "pages": 61,
+    "githubUsername": "greatsong",
+    "creatorName": "송석리 (석리송)"
+  },
+  {
     "name": "sw",
     "title": "정보통신기기소프트웨어개발",
     "description": "통신공학, 정보통신, 통신이론 산업기사 수준",
