@@ -1,5 +1,19 @@
 [
   {
+    "name": "Collaborative-Instructional-Design",
+    "title": "선생님들끼리의 협력 그리고 사람과 AI의 협력적 수업 설계 연수 교재",
+    "description": "",
+    "url": "https://greatsong.github.io/Collaborative-Instructional-Design/",
+    "repoUrl": "https://github.com/greatsong/Collaborative-Instructional-Design",
+    "createdAt": "2026-03-27T13:28:46.961Z",
+    "updatedAt": "2026-03-27T13:55:27.496Z",
+    "isEduflow": true,
+    "chapters": 19,
+    "pages": 177,
+    "githubUsername": "greatsong",
+    "creatorName": "송석리 (석리송)"
+  },
+  {
     "name": "ai-history-0",
     "title": "인공지능의 역사 이야기",
     "description": "인공지능의 역사를 인물과 사건 중심으로 스토리텔링을 통해 이해하는 교양 입문서적 느낌의 웹 북.",
