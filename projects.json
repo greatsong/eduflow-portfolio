@@ -1,5 +1,19 @@
 [
   {
+    "name": "eduflow-story",
+    "title": "인공지능이 고등학교 교육에 미칠 영향들",
+    "description": "인공지능이 고등학교 교육에 미칠 영향들에 대한 방향성에 대한 자료입니다.",
+    "url": "https://greatsong.github.io/eduflow-story/",
+    "repoUrl": "https://github.com/greatsong/eduflow-story",
+    "createdAt": "2026-03-28T02:56:09.682Z",
+    "updatedAt": "2026-03-28T07:09:07.875Z",
+    "isEduflow": true,
+    "chapters": 9,
+    "pages": 55,
+    "githubUsername": "greatsong",
+    "creatorName": "송석리 (석리송)"
+  },
+  {
     "name": "eduflow-story-2h",
     "title": "인공지능이 고등학교 교육에 미칠 영향들",
     "description": "인공지능이 고등학교 교육에 미칠 영향들에 대한 방향성에 대한 자료입니다.",
