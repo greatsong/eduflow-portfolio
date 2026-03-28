@@ -1,5 +1,19 @@
 [
   {
+    "name": "eduflow-story-2h",
+    "title": "인공지능이 고등학교 교육에 미칠 영향들",
+    "description": "인공지능이 고등학교 교육에 미칠 영향들에 대한 방향성에 대한 자료입니다.",
+    "url": "https://greatsong.github.io/eduflow-story-2h/",
+    "repoUrl": "https://github.com/greatsong/eduflow-story-2h",
+    "createdAt": "2026-03-28T02:56:09.682Z",
+    "updatedAt": "2026-03-28T04:05:10.220Z",
+    "isEduflow": true,
+    "chapters": 9,
+    "pages": 35,
+    "githubUsername": "greatsong",
+    "creatorName": "송석리 (석리송)"
+  },
+  {
     "name": "Collaborative-Instructional-Design",
     "title": "선생님들끼리의 협력 그리고 사람과 AI의 협력적 수업 설계 연수 교재",
     "description": "",
