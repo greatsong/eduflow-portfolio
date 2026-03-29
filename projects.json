@@ -1,5 +1,20 @@
 [
   {
+    "name": "ai-future-society",
+    "title": "인공지능과 미래사회",
+    "description": "고등학교 1학년 정보 교과 — AI 기본 원리, Teachable Machine 실습, 프롬프트 엔지니어링, AI 윤리 헌장 활동 포함",
+    "url": "https://greatsong.github.io/ai-future-society/",
+    "repoUrl": "https://github.com/greatsong/ai-future-society",
+    "createdAt": "2026-03-29T08:13:33.885Z",
+    "updatedAt": "2026-03-29T08:41:05.291Z",
+    "isEduflow": true,
+    "chapters": 8,
+    "pages": 122,
+    "githubUsername": "greatsong",
+    "creatorName": "석리송",
+    "creatorAffiliation": "당곡고등학교"
+  },
+  {
     "name": "eduflow-story-solar-pro3",
     "title": "인공지능이 고등학교 교육에 미칠 영향들",
     "description": "인공지능이 고등학교 교육에 미칠 영향들에 대한 방향성에 대한 자료입니다.",
