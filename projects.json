@@ -1,5 +1,20 @@
 [
   {
+    "name": "kjh-4-01-ai-agent",
+    "title": "4-1.인공지능과 지능 에이전트",
+    "description": "이 교육 자료는 고등학교 정보 교과 4단원  인공지능 교과서 입니다.",
+    "url": "https://kjhcode.github.io/kjh-4-01-ai-agent/",
+    "repoUrl": "https://github.com/kjhcode/kjh-4-01-ai-agent",
+    "createdAt": "2026-03-30T02:10:59.829Z",
+    "updatedAt": "2026-03-30T02:55:20.373Z",
+    "isEduflow": true,
+    "chapters": 1,
+    "pages": 9,
+    "githubUsername": "kjhcode",
+    "creatorName": "강정희",
+    "creatorAffiliation": "광주동신여자고등학교"
+  },
+  {
     "name": "ai-future-society",
     "title": "인공지능과 미래사회",
     "description": "고등학교 1학년 정보 교과 — AI 기본 원리, Teachable Machine 실습, 프롬프트 엔지니어링, AI 윤리 헌장 활동 포함",
