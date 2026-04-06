@@ -1,5 +1,19 @@
 [
   {
+    "name": "rhythm-and-data",
+    "title": "리듬과 데이터로 만나는 '언어 다양성'",
+    "description": "",
+    "url": "https://greatsong.github.io/rhythm-and-data/",
+    "repoUrl": "https://github.com/greatsong/rhythm-and-data",
+    "createdAt": "2026-04-06T05:27:23.030Z",
+    "updatedAt": "2026-04-06T05:50:29.373Z",
+    "isEduflow": true,
+    "chapters": 14,
+    "pages": 170,
+    "githubUsername": "greatsong",
+    "creatorName": "송석리 (석리송)"
+  },
+  {
     "name": "kjh-4-01-ai-agent",
     "title": "4-1.인공지능과 지능 에이전트",
     "description": "이 교육 자료는 고등학교 정보 교과 4단원  인공지능 교과서 입니다.",
