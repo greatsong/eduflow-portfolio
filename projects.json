@@ -1,5 +1,19 @@
 [
   {
+    "name": "programming-vpython",
+    "title": "Vptyhon으로 프로그래밍 날개 달기",
+    "description": "이 교육자료는 python 기초 문법을 습득한 학생이 Vpython을 이용하여 교과융합 프로젝트를 하기 위한 수업 자료입니다.\nvpython을 이용한 프로그래밍을 10차시 정도 하고 프로젝트 형태의 수업 예시를 하나 만들어서 학생들이 진행해보고 나서 개인별 프로젝트를 진행할 때 흐름도를 따라가면서 할 수 있도록 구성되었습니다.",
+    "url": "https://myungheeLee.github.io/programming-vpython/",
+    "repoUrl": "https://github.com/myungheeLee/programming-vpython",
+    "createdAt": "2026-04-07T00:33:38.996Z",
+    "updatedAt": "2026-04-07T05:01:24.753Z",
+    "isEduflow": true,
+    "chapters": 10,
+    "pages": 83,
+    "githubUsername": "myungheeLee",
+    "creatorName": "이명희"
+  },
+  {
     "name": "vpython-book",
     "title": "Vptyhon으로 프로그래밍 날개 달기",
     "description": "이 교육자료는 python 기초 문법을 습득한 학생이 Vpython을 이용하여 교과융합 프로젝트를 하기 위한 수업 자료입니다.\nvpython을 이용한 프로그래밍을 10차시 정도 하고 프로젝트 형태의 수업 예시를 하나 만들어서 학생들이 진행해보고 나서 개인별 프로젝트를 진행할 때 흐름도를 따라가면서 할 수 있도록 구성되었습니다.",
