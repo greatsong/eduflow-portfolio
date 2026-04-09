@@ -1,5 +1,19 @@
 [
   {
+    "name": "telecommunicationEngineering",
+    "title": "통신공학 단박에 끝내기",
+    "description": "통신공학의 내용을 산업기사 수준으로 작성해 주세요.\n1. 신호 및 시스템 기초통신을 이해하기 위한 가장 기본적인 수학적 도구들을 다룹니다.신호의 분류: 결정적 신호와 랜덤 신호, 주기 신호와 비주기 신호, 에너지 신호와 전력 신호시스템의 특성: 선형성(Linearity), 시불변성(Time-Invariance), 인과성(Causality)푸리에 해석: 푸리에 급수와 푸리에 변환, 주파수 영역 해석컨벌루션(Convolution)과 상관함수: 시간 영역에서의 시스템 응답 계산2. 아날로그 통신 (Analog Communication)전통적인 연속파 변조 방식을 다루며, 통신의 기본 원리를 익히는 단계입니다.진폭 변조(AM): DSB-SC, DSB-LC(표준 AM), SSB, VSB 변조 및 복조각 변조(Angle Modulation): 주파수 변조(FM)와 위상 변조(PM), 카슨의 법칙(Bandwidth 계산)아날로그 수신기: 슈퍼헤테로다인 수신기의 구조와 특징3. 디지털 통신 기초 (Baseband Transmission)아날로그 신호를 디지털로 변환하고 전송하는 과정을 다룹니다.표본화(Sampling): 나이퀴스트 표본화 정리, 에일리어싱(Aliasing) 현상양자화(Quantization): 균일/비균일 양자화, 양자화 잡음부호화(Encoding): PCM(펄스 부호 변조), DPCM, ADPCM, DM(델타 변조)기저대역 전송: 라인 코딩(AMI, HDB3 등), 심볼 간 간섭(ISI)과 나이퀴스트 제1기준4. 디지털 변복조 (Passband Transmission)디지털 데이터를 반송파에 실어 보내는 현대 통신의 핵심 파트입니다.기본 변조: ASK(진폭), FSK(주파수), PSK(위상)고급 변조: QAM(직교 진폭 변조), MSK, GMSK성능 분석: 비트 오차율(BER), 전력 효율성 및 대역폭 효율성 비교동기 및 비동기 검파: 위상 고정 루프(PLL)의 원리5. 정보이론 및 부호화데이터를 효율적이고 안전하게 전달하는 기술을 다룹니다.정보량과 엔트로피: 소스 코딩 정리채널 용량: 샤논의 채널 용량 법칙 ($C = W \\log_2(1 + S/N)$)에러 제어 부호: 블록 부호(해밍 코드, CRC), 컨벌루션 부호, 터보 부호, LDPC6. 다중 접속 및 다중화 기술여러 사용자가 통신 자원을 공유하는 방법입니다.다중화(Multiplexing): FDM, TDM, WDM다중 접속(Multiple Access): FDMA, TDMA, CDMA(확산 대역 기술), OFDMA7. 네트워크 및 최신 통신 기술최근 기출 비중이 높아지고 있는 응용 분야입니다.OSI 7계층 및 TCP/IP: 각 계층별 프로토콜 및 역할이동통신: 4G(LTE) 및 5G 기술 표준, 셀룰러 개념, 핸드오버광통신: 광섬유의 원리, 구조 및 손실 요인위성 및 근거리 통신: 위성 궤도, Bluetooth, Zigbee, Wi-Fi 표준",
+    "url": "https://Charles-Roh.github.io/telecommunicationEngineering/",
+    "repoUrl": "https://github.com/Charles-Roh/telecommunicationEngineering",
+    "createdAt": "2026-04-09T07:55:09.074Z",
+    "updatedAt": "2026-04-09T08:34:01.262Z",
+    "isEduflow": true,
+    "chapters": 19,
+    "pages": 304,
+    "githubUsername": "Charles-Roh",
+    "creatorName": "노용철TV"
+  },
+  {
     "name": "communi",
     "title": "통신공학 단박에 끝내기",
     "description": "통신공학의 내용을 산업기사 수준으로 작성해 주세요.\n1. 신호 및 시스템 기초통신을 이해하기 위한 가장 기본적인 수학적 도구들을 다룹니다.신호의 분류: 결정적 신호와 랜덤 신호, 주기 신호와 비주기 신호, 에너지 신호와 전력 신호시스템의 특성: 선형성(Linearity), 시불변성(Time-Invariance), 인과성(Causality)푸리에 해석: 푸리에 급수와 푸리에 변환, 주파수 영역 해석컨벌루션(Convolution)과 상관함수: 시간 영역에서의 시스템 응답 계산2. 아날로그 통신 (Analog Communication)전통적인 연속파 변조 방식을 다루며, 통신의 기본 원리를 익히는 단계입니다.진폭 변조(AM): DSB-SC, DSB-LC(표준 AM), SSB, VSB 변조 및 복조각 변조(Angle Modulation): 주파수 변조(FM)와 위상 변조(PM), 카슨의 법칙(Bandwidth 계산)아날로그 수신기: 슈퍼헤테로다인 수신기의 구조와 특징3. 디지털 통신 기초 (Baseband Transmission)아날로그 신호를 디지털로 변환하고 전송하는 과정을 다룹니다.표본화(Sampling): 나이퀴스트 표본화 정리, 에일리어싱(Aliasing) 현상양자화(Quantization): 균일/비균일 양자화, 양자화 잡음부호화(Encoding): PCM(펄스 부호 변조), DPCM, ADPCM, DM(델타 변조)기저대역 전송: 라인 코딩(AMI, HDB3 등), 심볼 간 간섭(ISI)과 나이퀴스트 제1기준4. 디지털 변복조 (Passband Transmission)디지털 데이터를 반송파에 실어 보내는 현대 통신의 핵심 파트입니다.기본 변조: ASK(진폭), FSK(주파수), PSK(위상)고급 변조: QAM(직교 진폭 변조), MSK, GMSK성능 분석: 비트 오차율(BER), 전력 효율성 및 대역폭 효율성 비교동기 및 비동기 검파: 위상 고정 루프(PLL)의 원리5. 정보이론 및 부호화데이터를 효율적이고 안전하게 전달하는 기술을 다룹니다.정보량과 엔트로피: 소스 코딩 정리채널 용량: 샤논의 채널 용량 법칙 ($C = W \\log_2(1 + S/N)$)에러 제어 부호: 블록 부호(해밍 코드, CRC), 컨벌루션 부호, 터보 부호, LDPC6. 다중 접속 및 다중화 기술여러 사용자가 통신 자원을 공유하는 방법입니다.다중화(Multiplexing): FDM, TDM, WDM다중 접속(Multiple Access): FDMA, TDMA, CDMA(확산 대역 기술), OFDMA7. 네트워크 및 최신 통신 기술최근 기출 비중이 높아지고 있는 응용 분야입니다.OSI 7계층 및 TCP/IP: 각 계층별 프로토콜 및 역할이동통신: 4G(LTE) 및 5G 기술 표준, 셀룰러 개념, 핸드오버광통신: 광섬유의 원리, 구조 및 손실 요인위성 및 근거리 통신: 위성 궤도, Bluetooth, Zigbee, Wi-Fi 표준",
