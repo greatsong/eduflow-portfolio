@@ -1,5 +1,19 @@
 [
   {
+    "name": "c-python",
+    "title": "C&Python",
+    "description": "C언어와 Python을 배우며 프로그래밍 언어의 기초를 배우는 수업으로, C언어를 먼저 학습하여 학문적인 학습이 진행된 후, Python을 배우며 두 언어의 문법 차이를 느끼는 교수학습 자료입니다.",
+    "url": "https://inforedu-woo.github.io/c-python/",
+    "repoUrl": "https://github.com/inforedu-woo/c-python",
+    "createdAt": "2026-04-13T04:47:59.167Z",
+    "updatedAt": "2026-04-13T06:34:37.439Z",
+    "isEduflow": true,
+    "chapters": 19,
+    "pages": 163,
+    "githubUsername": "inforedu-woo",
+    "creatorName": "Kim Dongwoo"
+  },
+  {
     "name": "kjh-4-02-machine",
     "title": "4-2.기계학습의 이해",
     "description": "이 교육 자료는 고등학교 정보 교과 4단원  인공지능 교과서 입니다.",
