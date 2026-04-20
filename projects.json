@@ -1,5 +1,19 @@
 [
   {
+    "name": "50-book",
+    "title": "파이썬 오류 극복 50",
+    "description": "파이썬을 처음 배우는 학생들이 자주 겪는 실수 극복하기 위한 친절한 스캐폴딩을 제공하는 학습용 교재",
+    "url": "https://greatsong-danggok.github.io/50-book/",
+    "repoUrl": "https://github.com/greatsong-danggok/50-book",
+    "createdAt": "2026-04-19T23:48:55.439Z",
+    "updatedAt": "2026-04-20T02:47:15.795Z",
+    "isEduflow": true,
+    "chapters": 30,
+    "pages": 245,
+    "githubUsername": "greatsong-danggok",
+    "creatorName": "교사송석리"
+  },
+  {
     "name": "c-python",
     "title": "C&Python",
     "description": "C언어와 Python을 배우며 프로그래밍 언어의 기초를 배우는 수업으로, C언어를 먼저 학습하여 학문적인 학습이 진행된 후, Python을 배우며 두 언어의 문법 차이를 느끼는 교수학습 자료입니다.",
