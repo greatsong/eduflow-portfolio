@@ -1,5 +1,19 @@
 [
   {
+    "name": "50-book-mkdocs",
+    "title": "파이썬 오류 극복 50",
+    "description": "파이썬을 처음 배우는 학생들이 자주 겪는 실수 극복하기 위한 친절한 스캐폴딩을 제공하는 학습용 교재",
+    "url": "https://greatsong-danggok.github.io/50-book-mkdocs/",
+    "repoUrl": "https://github.com/greatsong-danggok/50-book-mkdocs",
+    "createdAt": "2026-04-19T23:48:55.439Z",
+    "updatedAt": "2026-04-20T03:10:50.496Z",
+    "isEduflow": true,
+    "chapters": 30,
+    "pages": 245,
+    "githubUsername": "greatsong-danggok",
+    "creatorName": "교사송석리"
+  },
+  {
     "name": "50-book-starlight",
     "title": "파이썬 오류 극복 50",
     "description": "파이썬을 처음 배우는 학생들이 자주 겪는 실수 극복하기 위한 친절한 스캐폴딩을 제공하는 학습용 교재",
