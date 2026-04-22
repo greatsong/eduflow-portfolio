@@ -1,5 +1,19 @@
 [
   {
+    "name": "ai-cnn-book",
+    "title": "교육자료",
+    "description": "이 교육자료는 과학고등학교 1학년 학생들을 대상으로 만든 자료입니다.",
+    "url": "https://yakimbss26.github.io/ai-cnn-book/",
+    "repoUrl": "https://github.com/yakimbss26/ai-cnn-book",
+    "createdAt": "2026-04-22T04:56:51.427Z",
+    "updatedAt": "2026-04-22T05:24:33.351Z",
+    "isEduflow": true,
+    "chapters": 10,
+    "pages": 155,
+    "githubUsername": "yakimbss26",
+    "creatorName": "kim younga"
+  },
+  {
     "name": "visual-design",
     "title": "브랜딩 디자인",
     "description": "브랜딩 디자인 교육자료",
