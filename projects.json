@@ -1,5 +1,19 @@
 [
   {
+    "name": "pwnable",
+    "title": "포너블 기초자료",
+    "description": "",
+    "url": "https://jeff0322.github.io/pwnable/",
+    "repoUrl": "https://github.com/jeff0322/pwnable",
+    "createdAt": "2026-04-23T02:00:27.728Z",
+    "updatedAt": "2026-04-23T02:45:25.337Z",
+    "isEduflow": true,
+    "chapters": 15,
+    "pages": 239,
+    "githubUsername": "jeff0322",
+    "creatorName": "이영기"
+  },
+  {
     "name": "ai-cnn-book",
     "title": "교육자료",
     "description": "이 교육자료는 과학고등학교 1학년 학생들을 대상으로 만든 자료입니다.",
