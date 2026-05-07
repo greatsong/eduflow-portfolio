@@ -1,5 +1,19 @@
 [
   {
+    "name": "greatsong00",
+    "title": "왕초보를 위한 카르카손 필승 전략",
+    "description": "왕초보를 위한 카르카손 필승 전략으로 어떻게 하면 더 효과적인 게임을 할 수 있는지 친절하고 전문적으로 알려주는 교재",
+    "url": "https://greatsong.github.io/greatsong00/",
+    "repoUrl": "https://github.com/greatsong/greatsong00",
+    "createdAt": "2026-05-07T11:16:40.330Z",
+    "updatedAt": "2026-05-07T11:34:59.444Z",
+    "isEduflow": true,
+    "chapters": 7,
+    "pages": 63,
+    "githubUsername": "greatsong",
+    "creatorName": "송석리 (석리송)"
+  },
+  {
     "name": "codingtest",
     "title": "코딩테스트",
     "description": "건강보험심사평가원 및 금융권 코딩테스트 문제를 스스로 풀고 학습할 수 있도록 하는 사이트입니다. JAVA, Python, SQL 등 기출문제를 참고하여 문제상황을 구성하여 다양한 소재의 문항을 개발해 주세요.",
